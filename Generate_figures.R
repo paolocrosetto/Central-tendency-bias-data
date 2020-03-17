@@ -25,7 +25,7 @@ library(ggbeeswarm)       ## ued in Figure 1 for point jittering
 library(haven)            ## to import data from Stata
 
 ## data -- is imported from the raw Stata file
-df <- read_dta("ctb_final.dta")
+df <- read_dta("Data/ctb_final.dta")
 
 ## preliminary settings
 theme_set(theme_ipsum_rc())   ## global theme setting
