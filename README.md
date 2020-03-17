@@ -37,6 +37,6 @@ The variables are described in detail in the `variable_description.txt` file.
 
 ## How to rerun the analysis
 
-To generate all figures, run `Generate_figure.R` in R. 
+To generate all figures, run `Generate_figure.R` in R. The figures are also stored in the `/Figures` folder in this repo.
 
 To generate the raw data used in all tables, run `Generate_tables.do` in Stata13 or higher. Not all results have the exact same formatting as the final tables in the paper. 
