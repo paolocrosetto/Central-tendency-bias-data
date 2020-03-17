@@ -6,9 +6,12 @@
 library(tidyverse)        ## data wrangling and plotting
 library(hrbrthemes)       ## ggplot theme
 library(ggbeeswarm)       ## ued in Figure 1 for point jittering
+library(haven)            ## to import data from Stata
 
 ## data
-df <- read_csv("centralbias_data_JoEP.csv")
+## data is imported from the raw Stata file
+df <- read_dta("ctb_final.dta")
+#df <- read_csv("centralbias_data_JoEP.csv")
 
 ## preliminary settings
 theme_set(theme_ipsum_rc())   ## global theme setting
@@ -52,7 +55,7 @@ rm(fig1)
 
 # selecting needed variables and generating meaningful subjectID
 fig2 <- df %>% 
-  select(subject, session, treatment = Treatment, prob1, prob2, prob3, prob4, prob5) %>% 
+  select(subject, session, treatment, prob1, prob2, prob3, prob4, prob5) %>% 
   mutate(subjectID = session*100+subject)
 
 # generating human-readable treatments
@@ -118,7 +121,7 @@ fig2 %>%
   xlab("Bins")+
   ylab("Probability points")+
   theme(panel.grid.minor.y = element_blank())
-ggsave("Figures/Figure_3.png", width = 12, height = 15, units = "in")
+ggsave("Figures/Figure_2.png", width = 12, height = 15, units = "in")
 
 
 ### Figure B1
