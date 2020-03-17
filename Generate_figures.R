@@ -11,11 +11,12 @@ library(haven)            ## to import data from Stata
 ## data
 ## data is imported from the raw Stata file
 df <- read_dta("ctb_final.dta")
-#df <- read_csv("centralbias_data_JoEP.csv")
+
 
 ## preliminary settings
 theme_set(theme_ipsum_rc())   ## global theme setting
 
+#################
 ## Figure 1
 
 # selecting relevant variables
@@ -49,9 +50,10 @@ ggsave("Figures/Figure_1.png", width = 10, height = 7, units = "in")
 # cleaning up
 rm(fig1)
 
-### Figure 2
 
-### TODO: the figure is not exactly as the one in the paper --> it looks as if there is a problem with the labeling of treatments somewhere. To be checked
+
+#################
+### Figure 2
 
 # selecting needed variables and generating meaningful subjectID
 fig2 <- df %>% 
@@ -77,7 +79,8 @@ fig2 <- fig2 %>%
          s_semi_csp=s_csp | (prob1<prob2 & prob2>prob3 & prob3>prob4 & prob4>prob5) | (prob1<prob2 & prob2<prob3 & prob3<prob4 & prob4>prob5),
          w_semi_csp=w_csp | (prob1<=prob2 & prob2<=prob3 & prob3<=prob4 & prob4>prob5 & prob1<prob4) | (prob1<prob2 & prob2>=prob3 & prob3>=prob4 & prob4>=prob5 & prob2>prob5))
 
-# creatign a categorical variable to track single-peakedness
+
+# creating a categorical variable to track single-peakedness
 fig2$csptype <- "Other"
 fig2$csptype[fig2$uniform == 1] <- "Uniform"
 fig2$csptype[fig2$w_semi_csp == 1] <- "Weak-Semi-CSP"
@@ -124,9 +127,26 @@ fig2 %>%
 ggsave("Figures/Figure_2.png", width = 12, height = 15, units = "in")
 
 
+#################
 ### Figure B1
 
-### TODO: the figure depends on CQ data, that were not part of the data we submitted to the journal on round 1 of the submission. 
-### TODO: we need to figure out what to do with this -- send in new, better polished data? 
+# Creating a dummy for subjects making mistakes in Control Question 3c
+df <- df %>% 
+  mutate(error3c = wrongq3c > 0) %>% 
+  mutate(error3c = as.factor(error3c)) %>% 
+  mutate(error3c = fct_recode(error3c, "No mistakes" = "FALSE", "Some mistakes" = "TRUE"))
 
-
+# plotting
+df %>% 
+  select(error3c, "Bin 1" = prob1, "Bin 2" = prob2, "Bin 3" = prob3, "Bin 4" = prob4, "Bin 5" = prob5) %>%  
+  gather(key, value, -error3c) %>% 
+  group_by(error3c, key) %>% 
+  summarise(prob = mean(value)) %>% 
+  ggplot(aes(key, prob, group = error3c, linetype = error3c))+
+  geom_line(size = 0.8)+
+  geom_hline(yintercept = 20, color = 'grey50', linetype = 'dashed')+
+  ylim(c(10,30))+
+  theme(legend.title = element_blank(),legend.position = "bottom",
+        panel.grid.minor.y = element_blank())+
+  labs(y = "Probability points", x = "")
+ggsave("Figures/Figure_B1.png", width = 6, height = 5, units = "in", dpi = 300)  
