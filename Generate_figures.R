@@ -1,6 +1,6 @@
 ### Figures for the paper "Central Tendency Bias in Belief Elicitation
 ### 
-### by Paolo Crosetto, Antonio Filippin, Peter Katuscak, John Smith
+### by Paolo Crosetto, Antonio Filippin, Peter Katuščák, John Smith
 ###
 ### Journal of Economic Psychology, 2020
 ###
