@@ -1,6 +1,22 @@
-### Figures
+### Figures for the paper "Central Tendency Bias in Belief Elicitation
 ### 
-### Add to the readme
+### by Paolo Crosetto, Antonio Filippin, Peter Katuscak, John Smith
+###
+### Journal of Economic Psychology, 2020
+###
+### This file generates all the figures of the paper
+### It needs only standard libraries downloadable from CRAN
+###
+
+## sessionInfo()
+# R version 3.6.1 (2019-07-05)
+# 
+# attached base packages:
+# [1] stats     graphics  grDevices utils     datasets  methods   base     
+# 
+# other attached packages:
+# [1] haven_2.2.0      ggbeeswarm_0.6.0 hrbrthemes_0.8.0 forcats_0.5.0    stringr_1.4.0    dplyr_0.8.5      purrr_0.3.3      readr_1.3.1     
+# [9] tidyr_1.0.2      tibble_2.1.3     ggplot2_3.3.0    tidyverse_1.3.0 
 
 ## libraries
 library(tidyverse)        ## data wrangling and plotting
@@ -8,10 +24,8 @@ library(hrbrthemes)       ## ggplot theme
 library(ggbeeswarm)       ## ued in Figure 1 for point jittering
 library(haven)            ## to import data from Stata
 
-## data
-## data is imported from the raw Stata file
+## data -- is imported from the raw Stata file
 df <- read_dta("ctb_final.dta")
-
 
 ## preliminary settings
 theme_set(theme_ipsum_rc())   ## global theme setting
@@ -72,6 +86,8 @@ fig2 <- fig2 %>%
                                "Auction 60/60 expand" = "7"))
 
 # generating categories of single-peakedness
+#
+# see paper for details
 fig2 <- fig2 %>% 
   mutate(uniform = prob1==prob2 & prob2==prob3 & prob3==prob4 & prob4==prob5, 
          s_csp = prob1<prob2 & prob2<prob3 & prob3>prob4 & prob4>prob5,
@@ -93,6 +109,9 @@ fig2 <- fig2 %>%
   select(subjectID, treatfct, starts_with("prob"), csptype)
 
 # gathering to format data for plotting
+#
+# 'gather()' formats data in long format
+# 'separate()' splits a vriable in two and then drops the unneded part
 fig2 <- fig2 %>% 
   gather(key, value, -subjectID, -csptype, -treatfct) %>% 
   separate(key, into = c("dropme", "bin"), sep = 4) %>% 
@@ -100,6 +119,9 @@ fig2 <- fig2 %>%
 
 
 # compute the share of people in each category
+#
+# 'summarise()' computes numerosity of each group
+# the 'mutate()' calls compute relative frequency and make it human-readable
 shares <- fig2 %>% 
   group_by(treatfct, csptype) %>% 
   summarise(n = n()) %>% 
@@ -108,6 +130,10 @@ shares <- fig2 %>%
   select(treatfct, csptype, share)
 
 # joining shares into the dataset and fine-formatting data
+#
+# 'left_join()' joins the two dataframes
+# 'fct_relevel()' allows to reorder the levels of the categorical variable
+# 'filter()' excludes the uniform subjects, as they ar uninteresting for the plot
 fig2 <- fig2 %>%   
   left_join(shares) %>% 
   mutate(csptype = as.factor(csptype)) %>% 
@@ -131,12 +157,17 @@ ggsave("Figures/Figure_2.png", width = 12, height = 15, units = "in")
 ### Figure B1
 
 # Creating a dummy for subjects making mistakes in Control Question 3c
+#
+# 'fct_recode()' renames levels of the dummy to human-readale format
 df <- df %>% 
   mutate(error3c = wrongq3c > 0) %>% 
   mutate(error3c = as.factor(error3c)) %>% 
   mutate(error3c = fct_recode(error3c, "No mistakes" = "FALSE", "Some mistakes" = "TRUE"))
 
 # plotting
+#
+# first part generates mean probability points by mistake and bin
+# second part (from 'ggplot()' onwards) plots the results of the computations
 df %>% 
   select(error3c, "Bin 1" = prob1, "Bin 2" = prob2, "Bin 3" = prob3, "Bin 4" = prob4, "Bin 5" = prob5) %>%  
   gather(key, value, -error3c) %>% 
