@@ -1,0 +1,51 @@
+################################################################
+    #             CTB paper data description              #
+################################################################
+
+subject               int [1,379]       Subject number. Unique within the experiment
+subject_in_session    int [1,32]		    Subject number. Unique within the session; NOT unique in the experiment
+session	              int (4-cypher)	  Session, numeric. Unique in the experiment.
+treatment             cat               Human-readable treatment labels
+auct_100_100	        bool [0,1]		    Dummy to identify the given treatment
+auct_100_100_wo	      bool [0,1]		    Dummy to identify the given treatment
+bret        	        bool [0,1]		    Dummy to identify the given treatment
+auct_80_100 	        bool [0,1]		    Dummy to identify the given treatment
+auct_60_100 	        bool [0,1]		    Dummy to identify the given treatment
+auct_60_100 	        bool [0,1]		    Dummy to identify the given treatment
+auct_60_60 	          bool [0,1]		    Dummy to identify the given treatment
+auct_60_60_exp 	      bool [0,1]		    Dummy to identify the given treatment
+value                 int               Value of the computerized opponent. One of 60, 80, 100
+timemain		          float [0,...]		  time needed to clear the auction part of the experiment
+bid 			            int [0,100]		    main choice in the experiment. No. of boxes (in BRET] or bid [in Auction]
+timecq  		          float [0,...]		  time needed to clear the control question screen
+trialscq              int [0,...]		    number of times the subject tried to submit the CQuestions
+wrongQ1a       		    int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ1b		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ1c		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ1d		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ2b		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ2c		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ2a		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ2d		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ3a		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ3b		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ3c		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ3d		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ3e		          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ4			          int [0,...]		    number of times the subject got the indicated question wrong
+wrongQ5			          int [0,...]		    number of times the subject got the indicated question wrong
+timeb1			          float [0,...]		  time needed to clear the uniform distribution belief elicitation screen
+prob1			            float [0,...]		  belief of prob bomb/bid is in first 1-20 bin
+prob2			            float [0,...]		  belief of prob bomb/bid is in second 1-20 bin
+prob3			            float [0,...]		  belief of prob bomb/bid is in third 1-20 bin
+prob4			            float [0,...]		  belief of prob bomb/bid is in fourth 1-20 bin
+prob5			            float [0,...]		  belief of prob bomb/bid is in fifth 1-20 bin
+timeb2			          float [0,...]		  time needed to clear the probability of winning the auction belief elicitation screen
+problose			        float [0,...]		  belief of prob losing
+probwin			          float [0,...]		  belief of prob winning
+female			          bool [0,1]		    0 = male, 1 = female
+age			              int [0,...]		    age of subject
+siblings		          int [0,...]		    number of siblings of subject
+faculty			          int [0,6]		      0 = 'Maths and Stats'; 1 = 'Physics and Biology'; 2 = 'Economics and Business'; 3 = 'Social sciences'; 4 = 'Literature and languages'; 5 = 'Other (or not student)'
+soep			            int [0,10]		    answer to the soep risk question. 0 = risk averse, 10 = risk loving
+complex			          int [0,10]		    answer to the dif of the task question. 0 = easy, 10 = difficult
