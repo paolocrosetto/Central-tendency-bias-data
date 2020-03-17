@@ -10,6 +10,13 @@ The paper can be find here : <<*add JoEcoPsy link when available*>>.
 
 The working paper version of the paper can be found here: <<*add preprint link when availble*>>
 
+## The data
+
+The *same* dataset is provided here in two versions. 
+
+- as a Stata .dta file, `ctb_final.dta`. This file is the one used by both our scripts to generate the figures and tables, and contains variable labels in Stata format
+- as a .csv file, `ctb_final.csv`. This file contains the *same* data and is given here for interoperability with other statistical packages. 
+
 ## Data description
 
 We conduct an experiment where 379 subjects engage in a first-price auction. Subjects are told the distribution of their random-draw opponent’s strategy: a uniform distribution on a range of possible integer bids. The subjects then place a bid in the auction. Subsequently, subjects are given an incentivized elicitation of their beliefs of the random-draw opponent’s strategy and their beliefs of winning the auction. The random-draw
@@ -25,8 +32,11 @@ This dataset contains all the data from our experiment. It oontains data from 37
 
 ## Variables
 
-The variables are described in detail in the `variable_description.txt` file. Here just a quick recapof the *main* and most important variables:
-
+The variables are described in detail in the `variable_description.txt` file.
 
 
 ## How to rerun the analysis
+
+To generate all figures, run `Generate_figure.R` in R. 
+
+To generate the raw data used in all tables, run `Generate_tables.do` in Stata13 or higher. Not all results have the exact same formatting as the final tables in the paper. 
