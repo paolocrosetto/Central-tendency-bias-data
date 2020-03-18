@@ -1,20 +1,28 @@
+/*
+*******************************************************************************
+     Tables for the paper "Central Tendency Bias in Belief Elicitation
+
+      by Paolo Crosetto, Antonio Filippin, Peter Katuščák, John Smith
+
+                Journal of Economic Psychology, 2020
+
+  This file generates all the numbers to be found in the tables of the paper
+
+                       Runs in Stata 12 or higher
+*******************************************************************************
+*/
+
 ** Data loading
 clear
 set more off
 
-*Peter:
-cd "/Users/Peto/Dropbox/Projects/Central Bias Final paper"
-*cd "/Users/peterkatuscak/Dropbox/Projects/Auction Probability Weighting/Central Bias"
 
-* Antonio
-* cd "C:\Users\Administrator\Dropbox\BRET vs Auction\Central Bias"
-
-* Paolo
-*cd "/home/paolo/Dropbox/BRET vs Auction/Central Bias/"
+** note: locate the file with respect to this script and set the path of the file accordingly
+** this script works if the .dta is in the same folder of the .do and you run Stata from the same location
 
 use cbt_final
 
-********************************************************************************************
+*******************************************************************************
 ** ANALYSIS
 
 ** Table 1: Summary statistics
