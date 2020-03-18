@@ -2,6 +2,7 @@
     #             CTB paper data description              #
 ################################################################
 
+
 subject               int [1,379]       Subject number. Unique within the experiment
 subject_in_session    int [1,32]		    Subject number. Unique within the session; NOT unique in the experiment
 session	              int (4-cypher)	  Session, numeric. Unique in the experiment.
