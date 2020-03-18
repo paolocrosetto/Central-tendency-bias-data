@@ -8,6 +8,7 @@
 ### It needs only standard libraries downloadable from CRAN
 ###
 
+
 ## sessionInfo()
 # R version 3.6.1 (2019-07-05)
 # 
