@@ -21,7 +21,7 @@ set more off
 ** note: locate the file with respect to this script and set the path of the file accordingly
 ** this script works if the .dta is in the same folder of the .do and you run Stata from the same location
 
-use cbt_final
+use ctb_final
 
 *******************************************************************************
 ** ANALYSIS
